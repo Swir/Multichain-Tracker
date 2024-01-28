@@ -1,0 +1,139 @@
+import requests
+from colorama import Fore, init
+from datetime import datetime
+
+init(autoreset=True)
+
+BSCT_API_KEY = 'Yours API BSC'
+ETH_API_KEY = 'Yours API ETH'
+MATIC_API_KEY = 'Yours API MATIC'
+
+def get_wallet_balances(wallet_address):
+    bsc_url = f'https://api.bscscan.com/api?module=account&action=balance&address={wallet_address}&apikey={BSCT_API_KEY}'
+    eth_url = f'https://api.etherscan.io/api?module=account&action=balance&address={wallet_address}&apikey={ETH_API_KEY}'
+    matic_url = f'https://api.polygonscan.com/api?module=account&action=balance&address={wallet_address}&apikey={MATIC_API_KEY}'
+
+    try:
+        bsc_response = requests.get(bsc_url)
+        bsc_response.raise_for_status()
+        bsc_data = bsc_response.json()
+
+        eth_response = requests.get(eth_url)
+        eth_response.raise_for_status()
+        eth_data = eth_response.json()
+
+        matic_response = requests.get(matic_url)
+        matic_response.raise_for_status()
+        matic_data = matic_response.json()
+
+        bsc_balance = int(bsc_data['result']) / 10**18
+        eth_balance = int(eth_data['result']) / 10**18
+        matic_balance = int(matic_data['result']) / 10**18
+
+        return bsc_balance, eth_balance, matic_balance
+    except requests.exceptions.RequestException as e:
+        print(f"{Fore.RED}Błąd zapytania API: {e}{Fore.RESET}")
+        return None
+    except KeyError as e:
+        print(f"{Fore.RED}Błąd w odpowiedzi API - brak klucza: {e}{Fore.RESET}")
+        return None
+    except Exception as e:
+        print(f"{Fore.RED}Inny błąd: {e}{Fore.RESET}")
+        return None
+
+def get_wallet_transactions(wallet_address, api_key, limit=5):
+    incoming_url = f'https://api.etherscan.io/api?module=account&action=txlist&address={wallet_address}&apikey={api_key}&sort=desc&limit={limit}&to=true'
+    outgoing_url = f'https://api.etherscan.io/api?module=account&action=txlist&address={wallet_address}&apikey={api_key}&sort=desc&limit={limit}&from=true'
+
+    try:
+        incoming_response = requests.get(incoming_url)
+        incoming_response.raise_for_status()
+        incoming_data = incoming_response.json()['result']
+
+        outgoing_response = requests.get(outgoing_url)
+        outgoing_response.raise_for_status()
+        outgoing_data = outgoing_response.json()['result']
+
+        return incoming_data, outgoing_data
+    except requests.exceptions.RequestException as e:
+        print(f"{Fore.RED}Błąd zapytania API: {e}{Fore.RESET}")
+        return None, None
+    except KeyError as e:
+        print(f"{Fore.RED}Błąd w odpowiedzi API - brak klucza: {e}{Fore.RESET}")
+        return None, None
+    except Exception as e:
+        print(f"{Fore.RED}Inny błąd: {e}{Fore.RESET}")
+        return None, None
+
+def get_crypto_price(symbol):
+    gecko_url = f'https://api.coingecko.com/api/v3/simple/price?ids={symbol}&vs_currencies=usd'
+
+    try:
+        gecko_response = requests.get(gecko_url)
+        gecko_response.raise_for_status()
+        gecko_data = gecko_response.json()
+
+        return gecko_data[symbol]['usd']
+    except requests.exceptions.RequestException as e:
+        print(f"{Fore.RED}Błąd zapytania API: {e}{Fore.RESET}")
+        return None
+    except KeyError as e:
+        print(f"{Fore.RED}Błąd w odpowiedzi API - brak klucza: {e}{Fore.RESET}")
+        return None
+    except Exception as e:
+        print(f"{Fore.RED}Inny błąd: {e}{Fore.RESET}")
+        return None
+
+def print_transactions(transactions, direction):
+    color = Fore.GREEN if direction == 'incoming' else Fore.RED
+
+    print(f"\nOstatnie {len(transactions)} transakcje {direction}:")
+    for idx, transaction in enumerate(transactions):
+        value = float(transaction['value']) / 10**18
+        formatted_value = f"{value} ETH"
+        timestamp = int(transaction['timeStamp'])
+        date = datetime.utcfromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S')
+        hash = transaction['hash']
+        
+        print(f"Transakcja {idx + 1} - {formatted_value}, Data: {date}, Hash: {hash}: {color}{direction.capitalize()}{Fore.RESET}")
+
+def wait_for_enter():
+    print(f"{Fore.LIGHTGREEN_EX}Przypierdol kryształ wyruchaj karla i Naciśnij Enter, aby zakończyć program.{Fore.RESET}")
+    input()
+
+
+def main():
+    print(f"{Fore.YELLOW}=== SCAPESMANIA Polska*telegram* (ScapesmaniaFACKER 1.0) by Swir ==={Fore.RESET}")
+
+    wallet_address = 'Wallet to tracking '
+    eth_api_key = 'Yours API'
+    
+    balances = get_wallet_balances(wallet_address)
+    eth_price = get_crypto_price('ethereum')
+    bnb_price = get_crypto_price('binancecoin')
+    matic_price = get_crypto_price('matic-network')
+    incoming_transactions, outgoing_transactions = get_wallet_transactions(wallet_address, eth_api_key)
+
+    if balances is not None and eth_price is not None and bnb_price is not None and matic_price is not None:
+        bsc_balance, eth_balance, matic_balance = balances
+        usd_balance_eth = eth_balance * eth_price
+        usd_balance_bnb = bsc_balance * bnb_price
+        usd_balance_matic = matic_balance * matic_price
+
+        print(f"\n{Fore.CYAN}Portfel {wallet_address}{Fore.RESET}")
+        print(f"Stan portfela BSC: {bsc_balance} BNB ({usd_balance_bnb:.2f} USD)")
+        print(f"Stan portfela ETH: {eth_balance} ETH ({usd_balance_eth:.2f} USD)")
+        print(f"Stan portfela MATIC: {matic_balance} MATIC ({usd_balance_matic:.2f} USD)")
+
+        if incoming_transactions is not None:
+            print_transactions(incoming_transactions, 'incoming')
+
+        if outgoing_transactions is not None:
+            print_transactions(outgoing_transactions, 'outgoing')
+    else:
+        print("Nie udało się pobrać danych o saldach portfela.")
+
+    wait_for_enter()
+
+if __name__ == "__main__":
+    main()
