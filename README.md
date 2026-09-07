@@ -2,34 +2,47 @@
 
 # ⛓️ Multichain Tracker
 
-**CLI wallet tracker for multiple EVM networks by Swir**  
-**Konsolowy tracker portfela dla wielu sieci EVM autorstwa Swir**
+### Read-Only Wallet Balance & Transaction Monitor for EVM Networks
+
+**BNB Chain • Ethereum • Polygon • CoinGecko • Python CLI**
 
 ![Python](https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white)
-![Ethereum](https://img.shields.io/badge/Network-Ethereum-627EEA?logo=ethereum)
+![Ethereum](https://img.shields.io/badge/Network-Ethereum-627EEA?logo=ethereum&logoColor=white)
 ![BNB](https://img.shields.io/badge/Network-BNB%20Chain-F0B90B)
 ![Polygon](https://img.shields.io/badge/Network-Polygon-8247E5)
-![Author](https://img.shields.io/badge/Author-Swir-ff4fa3)
+![Mode](https://img.shields.io/badge/Mode-Read%20Only-success)
 
 </div>
 
 ---
 
-## 🇬🇧 English
+## 🚀 About
 
-Multichain Tracker is a Python command-line utility for checking native wallet balances across BNB Chain, Ethereum and Polygon. It queries public blockchain explorer APIs and can also retrieve market prices through CoinGecko and display recent transaction information.
+**Multichain Tracker** is a Python command-line utility for monitoring public wallet addresses across several EVM networks. It can retrieve native balances, recent transaction information and market prices through public blockchain explorer APIs and CoinGecko.
 
-### ✨ Features
-- BNB Chain native balance
-- Ethereum native balance
-- Polygon native balance
-- blockchain-explorer API integration
-- recent transaction lookup
-- CoinGecko market-price lookup
-- colored terminal output with Colorama
+The tool is **read-only** and does not require wallet private keys or seed phrases.
 
-### 🔑 Configuration
-Before running the program, provide your own API keys in the configuration constants inside `main`:
+It is designed for users searching for an **Ethereum wallet tracker**, **BNB wallet balance checker**, **Polygon wallet monitor**, **multichain crypto tracker**, **Python blockchain explorer tool** or a simple CLI for checking public EVM addresses.
+
+---
+
+## ✨ Features
+
+| Feature | Description |
+|---|---|
+| 🟡 BNB Chain | Check native BNB balance |
+| 🔷 Ethereum | Check native ETH balance |
+| 🟣 Polygon | Check native network balance |
+| 📜 Transactions | Retrieve recent transaction information |
+| 💵 Market prices | Fetch public price data from CoinGecko |
+| 🎨 Terminal UI | Colored output with Colorama |
+| 🔒 Read-only | No wallet signing or private keys required |
+
+---
+
+## 🔑 API Configuration
+
+Provide your own explorer API keys in the relevant constants used by the program, such as:
 
 ```text
 BSCT_API_KEY
@@ -37,9 +50,11 @@ ETH_API_KEY
 MATIC_API_KEY
 ```
 
-Never commit real private API keys, seed phrases or wallet private keys to a public repository.
+Never place seed phrases, wallet private keys or other signing secrets in this project.
 
-### 🚀 Run
+---
+
+## 📦 Installation
 
 ```bash
 git clone https://github.com/Swir/Multichain-Tracker.git
@@ -50,30 +65,26 @@ python main
 
 ---
 
-## 🇵🇱 Polski
+## 🔍 Discoverability
 
-Multichain Tracker to konsolowe narzędzie Python do sprawdzania natywnych sald portfela w sieciach BNB Chain, Ethereum i Polygon. Program korzysta z API eksploratorów blockchain oraz CoinGecko i może prezentować informacje o ostatnich transakcjach.
+`ethereum wallet tracker python` • `bnb wallet balance checker` • `polygon wallet tracker` • `multichain wallet monitor` • `evm wallet tracker` • `crypto address balance checker` • `blockchain explorer python` • `coingecko wallet tracker`
 
-### ✨ Funkcje
-- saldo BNB Chain
-- saldo Ethereum
-- saldo Polygon
-- integracja z API eksploratorów blockchain
-- podgląd ostatnich transakcji
-- pobieranie cen z CoinGecko
-- kolorowy terminal dzięki Colorama
+---
 
-### 🔑 Konfiguracja
-Przed uruchomieniem wpisz własne klucze API w odpowiednich stałych w pliku `main`. Nigdy nie publikuj kluczy prywatnych portfela ani seed phrase.
+## ⚠️ Data & Financial Disclaimer
 
-### 🚀 Uruchomienie
+The project displays public blockchain and market data for informational purposes. Explorer APIs and market-data providers may be delayed, unavailable or rate-limited. Nothing in this repository is investment advice.
 
-```bash
-pip install requests colorama
-python main
-```
+---
 
-> This project is a read-only tracking utility and does not require wallet private keys. / Do monitorowania publicznego adresu portfela nie są potrzebne klucze prywatne.
+## 👨‍💻 Author
 
-## 👤 Author / Autor
-Developed by **Swir**.
+Developed by **Swir** — [@Swir](https://github.com/Swir)
+
+<div align="center">
+
+### ⛓️ One terminal • Multiple EVM networks • Public data only
+
+⭐ **Star the repository if you find it useful!**
+
+</div>
