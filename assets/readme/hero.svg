@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-labelledby="title desc">
+<title id="title">Multichain Tracker — read-only EVM wallet monitor</title><desc id="desc">SWIR project banner for a Python command-line utility that reads public balances, Ethereum transaction history and market prices.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#02050A"/><stop offset=".58" stop-color="#07111C"/><stop offset="1" stop-color="#02050A"/></linearGradient><linearGradient id="cyan" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#0088FF"/><stop offset=".5" stop-color="#62E5FF"/><stop offset="1" stop-color="#0088FF"/></linearGradient><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#62E5FF" stroke-opacity=".05"/></pattern></defs>
+<rect width="1200" height="320" rx="26" fill="url(#bg)"/><rect x="1" y="1" width="1198" height="318" rx="25" fill="none" stroke="#62E5FF" stroke-opacity=".24"/><rect width="1200" height="320" rx="26" fill="url(#grid)"/>
+<g transform="translate(70 68)"><rect width="168" height="168" rx="34" fill="#07111C" stroke="#62E5FF" stroke-opacity=".5"/><path d="M50 84h68M65 57l-22 27 22 27M103 57l22 27-22 27" fill="none" stroke="url(#cyan)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="84" cy="84" r="13" fill="#02050A" stroke="#F4FAFF" stroke-width="4"/></g>
+<text x="282" y="68" font-family="Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" letter-spacing="4" fill="#62E5FF">SWIR PROJECT</text>
+<text x="282" y="144" font-family="Segoe UI,Arial,sans-serif" font-size="54" font-weight="800" fill="#F4FAFF">Multichain Tracker</text>
+<text x="284" y="189" font-family="Segoe UI,Arial,sans-serif" font-size="23" fill="#B8D2E0">Read-only public wallet and market-data monitor</text>
+<text x="284" y="232" font-family="Segoe UI,Arial,sans-serif" font-size="16" font-weight="650" letter-spacing="1.5" fill="#62E5FF">PYTHON CLI  •  BNB / ETH / POLYGON  •  PUBLIC DATA</text>
+</svg>
