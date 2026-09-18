@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+<title id="title">Multichain Tracker icon</title><desc id="desc">Electric cyan chain links on a dark SWIR background.</desc>
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0088FF"/><stop offset="1" stop-color="#62E5FF"/></linearGradient></defs>
+<rect width="256" height="256" rx="48" fill="#02050A"/><rect x="10" y="10" width="236" height="236" rx="40" fill="#07111C" stroke="#62E5FF" stroke-opacity=".35" stroke-width="3"/>
+<g fill="none" stroke="url(#g)" stroke-width="14" stroke-linecap="round"><path d="M83 82l-24 24a31 31 0 0 0 44 44l24-24"/><path d="M173 174l24-24a31 31 0 0 0-44-44l-24 24"/><path d="M99 157l58-58"/></g>
+</svg>
